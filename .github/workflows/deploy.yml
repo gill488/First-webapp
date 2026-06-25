@@ -15,11 +15,13 @@ jobs:
       - name: Deploy to Azure VM via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/azureuser/YOUR_REPO_NAME
+            cd /home/azureuser/First-webapp
             git pull origin main
-            docker compose down
-            docker compose up -d --build
+            docker build -t my-app .
+            docker stop webapp-container || true
+            docker rm webapp-container || true
+            docker run -d -p 80:3000 --name webapp-container my-app
