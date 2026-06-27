@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
                     <label>Message</label>
                     <textarea name="message" rows="3" required placeholder="Type your message here..."></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit Button">Submit</button>
             </form>
         </div>
     </body>
