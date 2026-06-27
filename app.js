@@ -2,16 +2,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// Backend Middleware: Yeh incoming JSON aur Form data ko read karne ke liye lazmi hai
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Mock Database: Real database (like MongoDB/MySQL) ki jagah abhi hum data yahan save karenge
 let contactSubmissions = [
     { id: 1, name: "Tayyab Nawaz", email: "tayyab@example.com", message: "DevOps pipeline is working great!" }
 ];
 
-// 1. FRONTEND ROUTE: Yeh user ko main page dikhaye ga (With Interactive Form)
 app.get('/', (req, res) => {
     res.send(`
     <!DOCTYPE html>
@@ -72,16 +69,13 @@ app.get('/', (req, res) => {
     `);
 });
 
-// 2. BACKEND API ROUTE (POST): Form ka data receive karne ke liye
 app.post('/api/contact', (req, res) => {
     const { name, email, message } = req.body;
     
-    // Data validation
     if (!name || !email || !message) {
         return res.status(400).send("All fields are required!");
     }
 
-    // Creating a new record object
     const newSubmission = {
         id: contactSubmissions.length + 1,
         name: name,
@@ -90,10 +84,8 @@ app.post('/api/contact', (req, res) => {
         timestamp: new Date()
     };
 
-    // Pushing into our local array (Saving data)
     contactSubmissions.push(newSubmission);
 
-    // Form submit hone ke baad response dikhana
     res.send(`
         <div style="background: #0f172a; color: #fff; font-family: sans-serif; text-align: center; padding: 50px;">
             <h2 style="color: #10b981;">✓ Data Processed Successfully by Backend!</h2>
@@ -103,7 +95,6 @@ app.post('/api/contact', (req, res) => {
     `);
 });
 
-// 3. BACKEND API ROUTE (GET): Saved submissions ka data fetch karne ke liye
 app.get('/api/submissions', (req, res) => {
     res.json(contactSubmissions);
 });
