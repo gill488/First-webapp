@@ -55,14 +55,6 @@ app.get('/', (req, res) => {
                 </div>
                 <button type="submit">Submit to Backend</button>
             </form>
-
-            <div class="api-box">
-                <div class="api-title">Live Backend Data Endpoint</div>
-                <p style="text-align: left; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                    You can view all submitted data in raw JSON format here:
-                </p>
-                <a href="/api/submissions" target="_blank">View /api/submissions</a>
-            </div>
         </div>
     </body>
     </html>
