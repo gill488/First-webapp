@@ -37,8 +37,8 @@ app.get('/', (req, res) => {
     </head>
     <body>
         <div class="container">
-            <h1>Azure Backend App Active</h1>
-            <p>Enter details below to test the live Node.js Backend API processing.</p>
+            <h1>Active Backend App </h1>
+            <p>Enter Your details into below Form.</p>
             
             <form action="/api/contact" method="POST">
                 <div>
@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
                     <label>Message</label>
                     <textarea name="message" rows="3" required placeholder="Type your message here..."></textarea>
                 </div>
-                <button type="submit">Submit to Backend</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     </body>
